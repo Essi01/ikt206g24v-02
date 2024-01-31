@@ -1,4 +1,4 @@
-name: .NET
+name: .NET with Node.js 20
 
 on:
   push:
@@ -10,16 +10,27 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.101
+
       - name: small change
         run: pwd
+
       - name: Restore dependencies
         run: dotnet restore ClassLibraryProject
+
       - name: Build
         run: dotnet build ClassLibraryProject
-      - name: Run Test
+
+      - name: Test
         run: dotnet test ClassLibraryProject/StringLibraryTest/StringLibraryTest.csproj
