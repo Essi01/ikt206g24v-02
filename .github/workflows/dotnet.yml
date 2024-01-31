@@ -21,5 +21,5 @@ jobs:
         run: dotnet restore ClassLibraryProject
       - name: Build
         run: dotnet build ClassLibraryProject
-      - name: Test
+      - name: Run Test
         run: dotnet test ClassLibraryProject/StringLibraryTest/StringLibraryTest.csproj
